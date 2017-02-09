@@ -50,14 +50,12 @@
         {
             NSString *string1 = url.absoluteString;
 						NSLog(@"%@", string1);
-						[[UIApplication sharedApplication] openURL:url];
-            allowNavigationsPass = NO;
 
-            // NSRange range = [ string1 rangeOfString:@"utm_content"];
-            // if (range.location != NSNotFound) {
-            //     [[UIApplication sharedApplication] openURL:url];
-            //     allowNavigationsPass = NO;
-            // }
+            NSRange range = [ string1 rangeOfString:@"utm_content"];
+            if (range.location != NSNotFound) {
+                [[UIApplication sharedApplication] openURL:url];
+                allowNavigationsPass = NO;
+            }
         }
 
     }
