@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
- 
+
  http://www.apache.org/licenses/LICENSE-2.0
- 
+
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,10 +36,10 @@
 
 - (BOOL)shouldOverrideLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    
+
     NSURL* url = [request URL];
     BOOL allowNavigationsPass = YES;
-    
+
     switch (navigationType) {
         case UIWebViewNavigationTypeLinkClicked:
         {
@@ -49,15 +49,19 @@
         case UIWebViewNavigationTypeOther:
         {
             NSString *string1 = url.absoluteString;
-            NSRange range = [ string1 rangeOfString:@"utm_content"];
-            if (range.location != NSNotFound) {
-                [[UIApplication sharedApplication] openURL:url];
-                allowNavigationsPass = NO;
-            }
+						NSLog(@"%@", string1);
+						[[UIApplication sharedApplication] openURL:url];
+            allowNavigationsPass = NO;
+
+            // NSRange range = [ string1 rangeOfString:@"utm_content"];
+            // if (range.location != NSNotFound) {
+            //     [[UIApplication sharedApplication] openURL:url];
+            //     allowNavigationsPass = NO;
+            // }
         }
-                
+
     }
-    
+
     return allowNavigationsPass;
 }
 
